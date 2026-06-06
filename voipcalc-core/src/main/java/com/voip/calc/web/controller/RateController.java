@@ -1,9 +1,8 @@
-package com.voip.calc.interface.controller;
+package com.voip.calc.web.controller;
 
 import com.voip.calc.application.dto.CallContextRequest;
 import com.voip.calc.application.dto.RateResponse;
 import com.voip.calc.application.service.RateCalculationAppService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -11,11 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
-/**
- * REST controller exposing the rate calculation API.
- * Transforms HTTP request parameters into application-layer DTOs
- * and returns the computed rate as JSON.
- */
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")

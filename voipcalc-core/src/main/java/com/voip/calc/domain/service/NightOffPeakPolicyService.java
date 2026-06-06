@@ -1,6 +1,7 @@
 package com.voip.calc.domain.service;
 
 import com.voip.calc.domain.model.RateZone;
+import com.voip.calc.domain.model.RateZoneResolver;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

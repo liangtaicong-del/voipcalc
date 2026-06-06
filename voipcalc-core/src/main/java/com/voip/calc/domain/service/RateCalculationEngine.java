@@ -3,6 +3,7 @@ package com.voip.calc.domain.service;
 import com.voip.calc.domain.model.CallContext;
 import com.voip.calc.domain.model.RateResult;
 import com.voip.calc.domain.model.RateZone;
+import com.voip.calc.domain.model.RateZoneResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -9,7 +9,7 @@ import java.time.LocalTime;
 public final class RateZoneResolver {
 
     private static final LocalTime NIGHT_START = LocalTime.of(23, 0, 0);
-    private static final LocalTime NIGHT_END = LocalTime.of(5, 0, 0);
+    private static final LocalTime NIGHT_END = LocalTime.of(5, 0, 1);
 
     private RateZoneResolver() {}
 
