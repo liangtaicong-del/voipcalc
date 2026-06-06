@@ -4,11 +4,8 @@
 
       <!-- Page Title -->
       <div class="page-header animate-fade-in-up">
-        <h1 class="page-title">Rate Calculator</h1>
-        <p class="page-subtitle">
-          Enter call details to calculate the per-minute rate based on destination country,
-          customer identity, and time-of-day policies.
-        </p>
+        <h1 class="page-title">{{ $t('pageTitle') }}</h1>
+        <p class="page-subtitle">{{ $t('pageSubtitle') }}</p>
       </div>
 
       <!-- Calculator Form -->
@@ -17,8 +14,8 @@
         <!-- Input Panel -->
         <section class="panel input-panel animate-fade-in-up" style="animation-delay: 80ms">
           <div class="panel-header">
-            <h2 class="panel-title">Call Parameters</h2>
-            <p class="panel-desc">Configure the call context</p>
+            <h2 class="panel-title">{{ $t('panelTitle') }}</h2>
+            <p class="panel-desc">{{ $t('panelDesc') }}</p>
           </div>
 
           <form class="form" @submit.prevent="handleCalculate">
@@ -32,7 +29,7 @@
                     <circle cx="12" cy="7" r="4"/>
                   </svg>
                 </span>
-                Caller Number
+                {{ $t('callerNumber') }}
               </label>
               <input
                 id="callerNumber"
@@ -42,7 +39,7 @@
                 placeholder="+8613812345678"
                 autocomplete="off"
               />
-              <span class="form-hint">The phone number initiating the call</span>
+              <span class="form-hint">{{ $t('callerNumberHint') }}</span>
             </div>
 
             <!-- Callee Number -->
@@ -53,7 +50,7 @@
                     <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
                   </svg>
                 </span>
-                Callee Number
+                {{ $t('calleeNumber') }}
               </label>
               <input
                 id="calleeNumber"
@@ -63,7 +60,7 @@
                 placeholder="+14155551234"
                 autocomplete="off"
               />
-              <span class="form-hint">The destination phone number (determines country rate)</span>
+              <span class="form-hint">{{ $t('calleeNumberHint') }}</span>
             </div>
 
             <!-- Customer Type -->
@@ -76,21 +73,21 @@
                     <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
                   </svg>
                 </span>
-                Customer Type
+                {{ $t('customerType') }}
               </label>
               <div class="radio-group">
                 <label class="radio-option" :class="{ active: form.customerType === 'NORMAL' }">
                   <input type="radio" v-model="form.customerType" value="NORMAL" />
                   <span class="radio-content">
-                    <span class="radio-label">Normal</span>
-                    <span class="radio-desc">Regular user — no discount</span>
+                    <span class="radio-label">{{ $t('normal') }}</span>
+                    <span class="radio-desc">{{ $t('normalDesc') }}</span>
                   </span>
                 </label>
                 <label class="radio-option vip" :class="{ active: form.customerType === 'VIP' }">
                   <input type="radio" v-model="form.customerType" value="VIP" />
                   <span class="radio-content">
-                    <span class="radio-label">VIP</span>
-                    <span class="radio-desc">Overseas student / Chinese card — 10% off</span>
+                    <span class="radio-label">{{ $t('vip') }}</span>
+                    <span class="radio-desc">{{ $t('vipDesc') }}</span>
                   </span>
                 </label>
               </div>
@@ -105,7 +102,7 @@
                     <polyline points="12 6 12 12 16 14"/>
                   </svg>
                 </span>
-                Call Start Time
+                {{ $t('callStartTime') }}
               </label>
               <div class="time-input-group">
                 <input
@@ -119,13 +116,13 @@
                   type="button"
                   class="time-now-btn"
                   @click="setNow"
-                  title="Set to current time"
+                  :title="$t('setNow')"
                 >
-                  Now
+                  {{ $t('setNow') }}
                 </button>
               </div>
               <span class="form-hint time-hint" :class="{ night: isNightTime }">
-                Night off-peak: 23:00 – 05:00 (saves ¥0.02/min)
+                {{ $t('nightHint') }}
               </span>
             </div>
 
@@ -137,7 +134,7 @@
                 <span class="loading-dot"></span>
               </span>
               <span v-else class="btn-text">
-                Calculate Rate
+                {{ $t('calculateRate') }}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <line x1="5" y1="12" x2="19" y2="12"/>
                   <polyline points="12 5 19 12 12 19"/>
@@ -160,8 +157,8 @@
                 <line x1="12" y1="17" x2="12" y2="21"/>
               </svg>
             </div>
-            <p class="empty-text">Result will appear here</p>
-            <p class="empty-hint">Configure call parameters and click Calculate</p>
+            <p class="empty-text">{{ $t('resultEmpty') }}</p>
+            <p class="empty-hint">{{ $t('resultEmptyHint') }}</p>
           </div>
 
           <!-- Error State -->
@@ -173,9 +170,9 @@
                 <line x1="9" y1="9" x2="15" y2="15"/>
               </svg>
             </div>
-            <p class="error-title">Request Failed</p>
+            <p class="error-title">{{ $t('requestFailed') }}</p>
             <p class="error-message">{{ error }}</p>
-            <button class="btn-retry" @click="handleCalculate">Retry</button>
+            <button class="btn-retry" @click="handleCalculate">{{ $t('retry') }}</button>
           </div>
 
           <!-- Success Result -->
@@ -183,14 +180,14 @@
 
             <!-- Final Rate Hero -->
             <div class="rate-hero">
-              <div class="rate-label">Final Rate</div>
+              <div class="rate-label">{{ $t('finalRate') }}</div>
               <div class="rate-value">
                 <span class="rate-number">{{ formatRate(result.finalRate) }}</span>
                 <span class="rate-unit">CNY/min</span>
               </div>
               <div class="rate-meta">
                 <span class="meta-badge" :class="result.breakdown.isNightOffPeak ? 'night' : 'day'">
-                  {{ result.breakdown.isNightOffPeak ? 'Night Off-Peak' : 'Daytime' }}
+                  {{ result.breakdown.isNightOffPeak ? $t('nightOffPeak') : $t('daytime') }}
                 </span>
                 <span class="meta-badge" :class="result.breakdown.customerType === 'VIP' ? 'vip' : 'normal'">
                   {{ result.breakdown.customerType }}
@@ -200,11 +197,11 @@
 
             <!-- Breakdown Table -->
             <div class="breakdown">
-              <h3 class="breakdown-title">Rate Breakdown</h3>
+              <h3 class="breakdown-title">{{ $t('breakdown') }}</h3>
 
               <div class="breakdown-table">
                 <div class="breakdown-row">
-                  <span class="breakdown-key">Destination</span>
+                  <span class="breakdown-key">{{ $t('destination') }}</span>
                   <span class="breakdown-value">
                     <span class="country-flag">{{ getCountryEmoji(result.breakdown.countryCode) }}</span>
                     {{ result.breakdown.countryName }}
@@ -212,26 +209,26 @@
                   </span>
                 </div>
                 <div class="breakdown-row">
-                  <span class="breakdown-key">Base Rate</span>
+                  <span class="breakdown-key">{{ $t('baseRate') }}</span>
                   <span class="breakdown-value mono">¥{{ result.baseRate }}</span>
                 </div>
                 <div class="breakdown-row">
-                  <span class="breakdown-key">Discount Factor</span>
+                  <span class="breakdown-key">{{ $t('discountFactor') }}</span>
                   <span class="breakdown-value mono">
                     {{ result.discountFactor }} &times;
-                    <span class="discount-note" v-if="result.discountFactor < 1">({{ ((1 - result.discountFactor) * 100).toFixed(0) }}% off)</span>
+                    <span class="discount-note" v-if="result.discountFactor < 1">({{ $t('discountNote', { percent: ((1 - result.discountFactor) * 100).toFixed(0) }) }})</span>
                   </span>
                 </div>
                 <div class="breakdown-row">
-                  <span class="breakdown-key">Off-Peak Reduction</span>
+                  <span class="breakdown-key">{{ $t('offPeakReduction') }}</span>
                   <span class="breakdown-value mono">
                     -¥{{ result.offPeakReduction }}
-                    <span class="reduction-note" v-if="result.offPeakReduction > 0">(night rate)</span>
+                    <span class="reduction-note" v-if="result.offPeakReduction > 0">{{ $t('reductionNote') }}</span>
                   </span>
                 </div>
                 <div class="breakdown-divider"></div>
                 <div class="breakdown-row total">
-                  <span class="breakdown-key">Final Rate</span>
+                  <span class="breakdown-key">{{ $t('finalRate') }}</span>
                   <span class="breakdown-value mono">¥{{ formatRate(result.finalRate) }}/min</span>
                 </div>
               </div>
@@ -239,7 +236,7 @@
 
             <!-- Calculation Formula -->
             <div class="formula">
-              <div class="formula-label">Calculation</div>
+              <div class="formula-label">{{ $t('calculation') }}</div>
               <div class="formula-content">
                 <span class="formula-step">¥{{ result.baseRate }}</span>
                 <span class="formula-op">&times;</span>
@@ -259,12 +256,12 @@
       <!-- API Test Section -->
       <section class="api-section animate-fade-in-up" style="animation-delay: 240ms">
         <div class="api-header">
-          <h2 class="api-title">API Endpoint</h2>
+          <h2 class="api-title">{{ $t('apiTitle') }}</h2>
           <span class="api-method">GET</span>
           <code class="api-url">/api/rate</code>
         </div>
         <div class="api-example">
-          <div class="api-example-label">Example Request</div>
+          <div class="api-example-label">{{ $t('exampleRequest') }}</div>
           <div class="code-block">
             <span class="code-text">
               /api/rate?callerNumber={{ form.callerNumber || '+8613812345678' }}&amp;calleeNumber={{ form.calleeNumber || '+14155551234' }}&amp;customerType={{ form.customerType }}&amp;callStartTime={{ form.callStartTime || '2024-06-06T02:30:00' }}
@@ -319,9 +316,9 @@ function formatRate(rate) {
 
 function getCountryEmoji(countryCode) {
   const map = {
-    '+86': '🇨🇳', '+1': '🇺🇸'
+    '+86': '\u{1F1E8}\u{1F1F3}', '+1': '\u{1F1FA}\u{1F1F8}'
   }
-  return map[countryCode] || '🌍'
+  return map[countryCode] || '\u{1F30D}'
 }
 
 async function handleCalculate() {

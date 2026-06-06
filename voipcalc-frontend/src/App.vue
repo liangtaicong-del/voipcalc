@@ -12,6 +12,9 @@
           </div>
           <nav class="nav">
             <span class="nav-hint">Rate Calculation API v1.0</span>
+            <button class="lang-toggle" @click="toggleLocale" title="Toggle language">
+              {{ locale === 'en' ? '中' : 'EN' }}
+            </button>
           </nav>
         </div>
       </div>
@@ -31,6 +34,13 @@
 
 <script setup>
 import { RouterView } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n()
+
+function toggleLocale() {
+  locale.value = locale.value === 'en' ? 'zh' : 'en'
+}
 </script>
 
 <style scoped>
@@ -88,6 +98,18 @@ import { RouterView } from 'vue-router'
   font-size: 0.8125rem;
   color: var(--color-text-tertiary);
   font-family: var(--font-mono);
+}
+
+.lang-toggle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  margin-left: 12px;
+  letter-spacing: 0.02em;
 }
 
 .app-main {
